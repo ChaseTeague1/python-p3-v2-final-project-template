@@ -26,10 +26,10 @@ class Supplier:
         return self._location
     @location.setter
     def location(self, location):
-        if isinstance(location, str) and (1 <= len(location) <= 20):
+        if isinstance(location, str) and (1 <= len(location) <= 30):
             self._location = location
         else:
-            raise ValueError("Location needs to be a string and between 1 - 20 characters long")
+            raise ValueError("Location needs to be a string and between 1 - 30 characters long")
         
     @classmethod
     def create_table(cls):

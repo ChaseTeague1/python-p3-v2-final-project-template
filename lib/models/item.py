@@ -24,3 +24,23 @@ class Item:
             self._name = name
         else:
             raise ValueError("Name must be a string and greater than 0")
+
+    @property
+    def serial_number(self):
+        return self._serial_number
+    @serial_number.setter
+    def serial_number(self, serial_number):
+        if isinstance(serial_number, int) and (serial_number >= 6):
+            self._serial_number = serial_number
+        else:
+            raise ValueError("Serial number must be type integer and must be atleast 6 characters long")
+    
+    @property
+    def supplier_id(self):
+        return self._supplier_id
+    @supplier_id.setter
+    def supplier_id(self, supplier_id):
+        if isinstance(supplier_id, int) and Supplier.find_by_id(supplier_id):
+            self._supplier_id = supplier_id
+        else:
+            raise ValueError("Supplier id must refrence supplier database")
