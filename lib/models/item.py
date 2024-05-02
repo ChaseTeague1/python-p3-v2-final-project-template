@@ -8,7 +8,7 @@ class Item:
         self.id = id
         self.name = name
         self.serial_number = serial_number
-        self.supplier_id = supplier_id
+        self._supplier_id = supplier_id
 
     def __repr__(self):
         return (
@@ -44,3 +44,25 @@ class Item:
             self._supplier_id = supplier_id
         else:
             raise ValueError("Supplier id must refrence supplier database")
+        
+    @classmethod
+    def create_table(cls):
+        sql = """
+            CREATE TABLE IF NOT EXISTS items (
+            id INTEGER PRIMARY KEY,
+            name TEXT,
+            serial_number INTEGER,
+            supplier_id INTEGER,
+            FOREIGN KEY (supplier_id) REFERENCES suppliers(id)
+            )
+        """
+        CURSOR.execute(sql)
+        CONN.commit()
+    
+    @classmethod
+    def drop_table(cls):
+        sql = """
+            DROP TABLE IF EXISTS items;
+        """
+        CURSOR.execute(sql)
+        CONN.commit()
