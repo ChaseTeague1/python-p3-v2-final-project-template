@@ -20,14 +20,12 @@ def main():
         elif choice == "1":
             list_all_suppliers()
         elif choice == "2":
-            find_supplier_by_name()
-        elif choice == "3":
             find_supplier_by_id()
-        elif choice == "4":
+        elif choice == "3":
             create_supplier()
-        elif choice == "5":
+        elif choice == "4":
             update_supplier()
-        elif choice == "6":
+        elif choice == "5":
             delete_supplier()
         else:
             print("Invalid choice")

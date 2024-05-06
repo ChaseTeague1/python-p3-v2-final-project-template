@@ -95,17 +95,36 @@ class Item:
         CONN.commit()
 
     @classmethod
-    def instance_from_db(cls):
-        pass
+    def instance_from_db(cls, row):
+        item = cls.all.get(row[0])
+        if item :
+            item.name = row[1]
+            item.serial_number = row[2]
+            item.supplier_id = row[3] 
+        else:
+            item = cls(row[1], row[2], row[3])
+            item.id = row[0]
+            cls.all[item.id] = item
+        return item
 
     @classmethod
-    def create(cls):
-        pass
+    def create(cls, name, serial_number, supplier_id):
+        item = cls(name, serial_number, supplier_id)
+        item.save()
+        return item
 
     @classmethod
     def find_by_id(cls, id):
-        pass
+        sql = """
+            SELECT * FROM items WHERE id = ?
+        """
+        row = CURSOR.execute(sql, (id,)).fetchone()
+        return cls.instance_from_db(row) if row else None
 
     @classmethod
     def get_all(cls):
-        pass
+        sql = """
+            SELECT * FROM items
+        """
+        rows = CURSOR.execute(sql).fetchall()
+        return [cls.instance_from_db(row) for row in rows]
