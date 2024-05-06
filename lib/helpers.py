@@ -1,10 +1,13 @@
 # lib/helpers.py
 from models.supplier import Supplier
+from models.item import Items
 
 
 def exit_program():
     print("Goodbye!")
     exit()
+
+#Supplier helper functions
 
 def list_all_suppliers():
     suppliers = Supplier.get_all()
@@ -45,3 +48,20 @@ def delete_supplier():
         print(f"Supplier {id_} has been deleted")
     else:
         print(f"Could not delete supplier {id_}")
+
+#Items helper function
+
+def list_all_items():
+    pass
+
+def find_item_by_id():
+    pass
+
+def create_item():
+    pass
+
+def update_item():
+    pass
+
+def delete_item():
+    pass
