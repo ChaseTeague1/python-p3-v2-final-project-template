@@ -66,3 +66,46 @@ class Item:
         """
         CURSOR.execute(sql)
         CONN.commit()
+    
+    def save(self):
+        sql = """
+            INSERT INTO items (name, serial_number, supplier_id)
+            VALUES (?, ?, ?)
+        """
+        CURSOR.execute(sql, (self.name, self.serial_number, self.supplier_id))
+        CONN.commit()
+        self.id = CURSOR.lastrowid()
+        type(self).all[self.id] = self
+
+    def update(self):
+        sql = """
+            UPDATE items
+            SET name = ?, serial_number = ?, supplier_id = ?
+            WHERE id = ?
+        """
+        CURSOR.execute(sql, (self.name, self.serial_number, self.supplier_id, self.id))
+        CONN.commit()
+    
+    def delete(self):
+        sql = """
+            DELETE FROM items
+            WHERE id = ?
+        """
+        CURSOR.execute(sql, (self.id,))
+        CONN.commit()
+
+    @classmethod
+    def instance_from_db(cls):
+        pass
+
+    @classmethod
+    def create(cls):
+        pass
+
+    @classmethod
+    def find_by_id(cls, id):
+        pass
+
+    @classmethod
+    def get_all(cls):
+        pass
