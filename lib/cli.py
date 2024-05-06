@@ -3,7 +3,6 @@
 from helpers import (
     exit_program,
     list_all_suppliers,
-    find_supplier_by_name,
     find_supplier_by_id,
     create_supplier,
     update_supplier,
@@ -36,11 +35,10 @@ def menu():
     print("Please select an option:")
     print("0. Exit the program")
     print("1. See all Suppliers and Locations")
-    print("2. Find Supplier by name")
-    print("3. Find Supplier by ID")
-    print("4. Create a Supplier")
-    print("5. Update a Supplier")
-    print("6. Delete a Supplier")
+    print("2. Find Supplier by ID")
+    print("3. Create a Supplier")
+    print("4. Update a Supplier")
+    print("5. Delete a Supplier")
 
 
 if __name__ == "__main__":
