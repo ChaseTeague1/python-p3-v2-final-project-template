@@ -57,13 +57,37 @@ def list_all_items():
         print(item)
 
 def find_item_by_id():
-    pass
+    id_ = input("Enter item id: ")
+    item = Item.find_by_id(id_)
+    print((item) if item else print(f"Could not find item {id_}"))
 
 def create_item():
-    pass
+    name = input("Enter item name: ")
+    serial_number = input("Enter item serial number: ")
+    supplier_id = input("Enter supplier id for item: ")
+    try: 
+        item = Item.create(name, serial_number, supplier_id)
+        print(f"CREATED: {item}")
+    except Exception as exc:
+        print("Failed to create item", exc)
 
 def update_item():
-    pass
+    id_ = input("Enter item id you wish to update: ")
+    if item := Item.find_by_id(id_):
+        try:
+            name = input("Enter updated item name: ")
+            item.name = name
+            serial_number = input("Enter updated item serial number: ")
+            item.serial_number = serial_number
+            supplier_id = input("Enter updated item supplier id: ")
+            item.supplier_id = supplier_id
+
+            item.update()
+            print(f"UPDATED: {item}")
+        except Exception as exc:
+            print("Could not update item", exc)
+    else:
+        print(f"Could not find item id: {id_}")
 
 def delete_item():
     pass

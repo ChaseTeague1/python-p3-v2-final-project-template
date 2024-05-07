@@ -12,7 +12,7 @@ class Item:
 
     def __repr__(self):
         return (
-            f"<Item {self.id}: {self.name}, {self.job_title}, " +
+            f"<Item {self.id}: {self.name}, {self.serial_number}, " +
             f"Supplier ID: {self.supplier_id}>" )
     
     @property

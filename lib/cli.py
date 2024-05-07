@@ -6,7 +6,8 @@ from helpers import (
     find_supplier_by_id,
     create_supplier,
     update_supplier,
-    delete_supplier
+    delete_supplier,
+    create_item
 )
 
 
@@ -26,6 +27,8 @@ def main():
             update_supplier()
         elif choice == "5":
             delete_supplier()
+        elif choice == "6":
+            create_item()
         else:
             print("Invalid choice")
 
@@ -39,6 +42,7 @@ def menu():
     print("3. Create a Supplier")
     print("4. Update a Supplier")
     print("5. Delete a Supplier")
+    print("6: Create an Item")
 
 
 if __name__ == "__main__":
