@@ -1,6 +1,6 @@
 # lib/helpers.py
 from models.supplier import Supplier
-from models.item import Items
+from models.item import Item
 
 
 def exit_program():
@@ -52,7 +52,9 @@ def delete_supplier():
 #Items helper function
 
 def list_all_items():
-    pass
+    items = Item.get_all()
+    for item in items:
+        print(item)
 
 def find_item_by_id():
     pass

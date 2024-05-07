@@ -1,5 +1,5 @@
 from models.__init__ import CURSOR, CONN
-from supplier import Supplier
+from models.supplier import Supplier
 
 class Item:
     all = {}
@@ -74,7 +74,7 @@ class Item:
         """
         CURSOR.execute(sql, (self.name, self.serial_number, self.supplier_id))
         CONN.commit()
-        self.id = CURSOR.lastrowid()
+        self.id = CURSOR.lastrowid
         type(self).all[self.id] = self
 
     def update(self):

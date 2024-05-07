@@ -3,14 +3,19 @@
 
 from models.__init__ import CONN, CURSOR
 from models.supplier import Supplier
-
+from models.item import Item
 
 
 def database():
     Supplier.drop_table()
+    Item.drop_table()
     Supplier.create_table()
+    Item.create_table()
 
-    Supplier.create("Toogle", "Texas, United States")
-    Supplier.create("Megasoft", "California, United States")
+    toogle = Supplier.create("Toogle", "Texas, United States")
+    megasoft = Supplier.create("Megasoft", "California, United States")
+    
+    Item.create("Laptop", 123456, toogle.id)
+
     
 database()
