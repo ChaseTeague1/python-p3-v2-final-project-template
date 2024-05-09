@@ -9,7 +9,7 @@ class Supplier:
         self.location = location
 
     def __repr__(self):
-        return f"<Supplier {self.id}: {self.name}, {self.location}>"
+        return f"[|-Supplier {self.id}: {self.name}, {self.location}-|]"
     
     @property
     def name(self):

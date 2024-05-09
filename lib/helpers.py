@@ -45,7 +45,7 @@ def delete_supplier():
     id_ = input("Enter suppliers id: ")
     if supplier := Supplier.find_by_id(id_):
         supplier.delete()
-        print(f"Supplier {id_} has been deleted")
+        print(f"DELETED: {supplier}")
     else:
         print(f"Could not delete supplier {id_}")
 
@@ -93,5 +93,6 @@ def delete_item():
     id_ = input("Enter item you wish to delete: ")
     if item := Item.find_by_id(id_):
         item.delete()
+        print(f"DELETED: {item}")
     else:
         print(f"Item id {id_} not found.")

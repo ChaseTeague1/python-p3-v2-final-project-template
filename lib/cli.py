@@ -32,9 +32,9 @@ def main():
         elif choice == "5":
             delete_supplier()
         elif choice == "6":
-            create_item()
-        elif choice == "7":
             list_all_items()
+        elif choice == "7":
+            create_item()
         elif choice == "8":
             find_item_by_id()
         elif choice == "9":
@@ -54,8 +54,8 @@ def menu():
     print("3. Create a Supplier")
     print("4. Update a Supplier")
     print("5. Delete a Supplier")
-    print("6: Create an Item")
-    print("7. See all items")
+    print("6: See all items")
+    print("7. Create an item")
     print("8. find items by ID")
     print("9. Update an item")
     print("10. Delete an item")

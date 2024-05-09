@@ -12,8 +12,8 @@ class Item:
 
     def __repr__(self):
         return (
-            f"<Item {self.id}: {self.name}, {self.serial_number}, " +
-            f"Supplier ID: {self.supplier_id}>" )
+            f"[|-Item {self.id}: {self.name}, {self.serial_number}, " +
+            f"Supplier ID: {self.supplier_id}-|]" )
     
     @property
     def name(self):

@@ -14,8 +14,11 @@ def database():
 
     toogle = Supplier.create("Toogle", "Texas, United States")
     megasoft = Supplier.create("Megasoft", "California, United States")
+    bopple = Supplier.create("Bopple", "Albany, United States")
     
     Item.create("Laptop", 123456, toogle.id)
+    Item.create("EyePhone", 654321, bopple.id)
+    Item.create("Shutters", 87654321, megasoft.id)
 
     
 database()
