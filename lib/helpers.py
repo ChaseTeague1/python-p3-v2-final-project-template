@@ -63,7 +63,7 @@ def find_item_by_id():
 
 def create_item():
     name = input("Enter item name: ")
-    serial_number = input("Enter item serial number: ")
+    serial_number = int(input("Enter item serial number: "))
     supplier_id = input("Enter supplier id for item: ")
     try: 
         item = Item.create(name, serial_number, supplier_id)
@@ -77,9 +77,9 @@ def update_item():
         try:
             name = input("Enter updated item name: ")
             item.name = name
-            serial_number = input("Enter updated item serial number: ")
+            serial_number = int(input("Enter updated item serial number: "))
             item.serial_number = serial_number
-            supplier_id = input("Enter updated item supplier id: ")
+            supplier_id = int(input("Enter updated item supplier id: "))
             item.supplier_id = supplier_id
 
             item.update()
@@ -90,4 +90,8 @@ def update_item():
         print(f"Could not find item id: {id_}")
 
 def delete_item():
-    pass
+    id_ = input("Enter item you wish to delete: ")
+    if item := Item.find_by_id(id_):
+        item.delete()
+    else:
+        print(f"Item id {id_} not found.")

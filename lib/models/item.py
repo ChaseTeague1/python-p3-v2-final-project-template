@@ -30,7 +30,7 @@ class Item:
         return self._serial_number
     @serial_number.setter
     def serial_number(self, serial_number):
-        if isinstance(serial_number, int) and (serial_number >= 6):
+        if isinstance(serial_number, int) and serial_number >= 100000:
             self._serial_number = serial_number
         else:
             raise ValueError("Serial number must be type integer and must be atleast 6 characters long")
