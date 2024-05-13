@@ -16,3 +16,11 @@ You will need open your terminal and navigate to the place you have this project
 
 1. Run pip install to install dependencies and run pipenv shell.
 2. run "python lib/cli.py" to be propmted with questions regarding the databases
+
+
+## Description
+This is a CLI run application that is made to replicate an inventory management system between a supplier and the item that they produce. the design of this project is to make sure that the items keep track of their suppliers that they are attached too. To ensure this there is a one-to-many relationship between the 2 classes. As you will see whenever you run this program you will be presented with 10 choices from a list like prompt to choose from to search by id, create, update or delete from either table. 
+
+
+## Conclusion
+I got the idea for this project from knowledge of how warehouse or distribution plants control their knowledge of their inventory throughout the plant and warehouses keeping track of where certain items come from and how many of that item that there is. 
