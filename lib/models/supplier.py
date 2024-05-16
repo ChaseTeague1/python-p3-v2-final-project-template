@@ -116,4 +116,14 @@ class Supplier:
         """
         rows = CURSOR.execute(sql).fetchall()
         return [cls.instance_from_db(row) for row in rows ]
+    
+    def items(self):
+        from models.item import Item
+        sql = """
+            SELECT * FROM items
+            WHERE supplier_id = ?
+        """
+        CURSOR.execute(sql, (self.id,),)
+        rows = CURSOR.fetchall()
+        return [Supplier.instance_from_db(row) for row in rows]
         

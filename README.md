@@ -1,5 +1,6 @@
 # Phase 3 CLI+ORM Project Template
 
+
 ## Learning Goals
 
 - Discuss the basic directory structure of a CLI.

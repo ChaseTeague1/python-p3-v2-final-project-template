@@ -7,17 +7,18 @@ def exit_program():
     print("Goodbye!")
     exit()
 
+def page_2():
+    print("Enter suppliers number to see that suppliers current items")
+    print("Enter 'add' if you wish to add a new supplier")
+    print("Enter 'delete' if you wish to delete a supplier")
+    print("Enter 'back' if you wish to main menu again")
+
 #Supplier helper functions
 
 def list_all_suppliers():
     suppliers = Supplier.get_all()
     for supplier in suppliers:
         print(supplier)
-
-def find_supplier_by_id():
-    id_ = input("Enter supplier id: ")
-    supplier = Supplier.find_by_id(id_)
-    print((supplier) if supplier else print(f"Supplier not found"))
 
 def create_supplier():
     name = input("Enter new supplier name: ")
@@ -55,11 +56,6 @@ def list_all_items():
     items = Item.get_all()
     for item in items:
         print(item)
-
-def find_item_by_id():
-    id_ = input("Enter item id: ")
-    item = Item.find_by_id(id_)
-    print((item) if item else print(f"Could not find item {id_}"))
 
 def create_item():
     name = input("Enter item name: ")

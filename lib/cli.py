@@ -3,28 +3,36 @@
 from helpers import (
     exit_program,
     list_all_suppliers,
-    find_supplier_by_id,
     create_supplier,
     update_supplier,
     delete_supplier,
     create_item,
     list_all_items,
-    find_item_by_id,
     delete_item,
-    update_item
+    update_item,
+    page_2
 )
 
 
 def main():
+    menu()
     while True:
-        menu()
         choice = input("> ")
         if choice == "0":
             exit_program()
         elif choice == "1":
             list_all_suppliers()
-        elif choice == "2":
-            find_supplier_by_id()
+            while True:
+                page_2()
+                choice = input("> ")
+                if choice == "add":
+                    create_supplier()
+                list_all_suppliers()
+
+                if choice == "delete":
+                    delete_supplier()
+                list_all_suppliers()
+
         elif choice == "3":
             create_supplier()
         elif choice == "4":
@@ -35,8 +43,6 @@ def main():
             list_all_items()
         elif choice == "7":
             create_item()
-        elif choice == "8":
-            find_item_by_id()
         elif choice == "9":
             update_item()
         elif choice == "10":
@@ -47,18 +53,8 @@ def main():
 
 
 def menu():
-    print("Please select an option:")
-    print("0. Exit the program")
-    print("1. See all Suppliers and Locations")
-    print("2. Find Supplier by ID")
-    print("3. Create a Supplier")
-    print("4. Update a Supplier")
-    print("5. Delete a Supplier")
-    print("6: See all items")
-    print("7. Create an item")
-    print("8. find items by ID")
-    print("9. Update an item")
-    print("10. Delete an item")
+    print("****** Welcome to Inventory Manager ******\n----- A place where you can see and manage all your items and where they come from! -----")
+    print("To see all current suppliers press 1")
 
 
 if __name__ == "__main__":

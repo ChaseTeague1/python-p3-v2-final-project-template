@@ -11,9 +11,7 @@ class Item:
         self._supplier_id = supplier_id
 
     def __repr__(self):
-        return (
-            f"[|-Item {self.id}: {self.name}, {self.serial_number}, " +
-            f"Supplier ID: {self.supplier_id}-|]" )
+        return (f"[Item: {self.name}, Serial Number: {self.serial_number}]")
     
     @property
     def name(self):
