@@ -11,7 +11,7 @@ class Item:
         self._supplier_id = supplier_id
 
     def __repr__(self):
-        return (f"{self.id}: {self.name}, Serial Number: {self.serial_number}")
+        return (f"* {self.name}, Serial Number: {self.serial_number}")
     
     @property
     def name(self):
@@ -134,3 +134,13 @@ class Item:
         """
         rows = CURSOR.execute(sql, (supplier_id,)).fetchall()
         return [cls.instance_from_db(row) for row in rows]
+    
+    @classmethod
+    def find_by_name(cls, name):
+        sql = """
+            SELECT * FROM items
+            WHERE name = ?
+        """
+        row = CURSOR.execute(sql, (name,)).fetchone()
+        return cls.instance_from_db(row) if row else None
+        

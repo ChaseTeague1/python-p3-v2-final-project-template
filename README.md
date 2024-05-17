@@ -16,7 +16,8 @@ For this project I have for you a program that creates a database with 2 tables,
 You will need open your terminal and navigate to the place you have this project stored.
 
 1. Run pip install to install dependencies and run pipenv shell.
-2. run "python lib/cli.py" to be propmted with questions regarding the databases
+2. Run pip install pyfiglet to install CLI font package
+3. run "python lib/cli.py" to be propmted with questions regarding the databases
 
 
 ## Description

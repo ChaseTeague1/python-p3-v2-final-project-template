@@ -10,21 +10,21 @@ def exit_program():
 def page_2():
     print("------------------------------------------------")
     print("------------------------------------------------")
-    print("Enter search to see specific supplier items")
-    print("Enter add if you wish to add a new supplier")
-    print("Enter update if you wish to delete a supplier")
-    print("Enter delete if you wish to update a supplier")
-    print("Enter back if you wish to main menu again")
+    print("1. Enter search to see specific supplier items")
+    print("2. Enter add if you wish to add a new supplier")
+    print("3. Enter update if you wish to delete a supplier")
+    print("4. Enter delete if you wish to update a supplier")
+    print("5. Enter back if you wish to main menu again")
     print("------------------------------------------------")
     print("------------------------------------------------")
 
 def page_3():
     print("------------------------------------------------")
     print("------------------------------------------------")
-    print("Enter add to create new item")
-    print("Enter update to update an item")
-    print("Enter delete to delete an item")
-    print("Enter back to see previous page")
+    print("1. Enter add to create new item")
+    print("2. Enter update to update an item")
+    print("3. Enter delete to delete an item")
+    print("4. Enter back to see previous page")
     print("------------------------------------------------")
     print("------------------------------------------------")
 
@@ -65,9 +65,8 @@ def delete_supplier():
     else:
         print(f"Could not delete supplier {id_}")
 
-def list_supplier_items():
-    id_ = input("Enter suppliers number: ")
-    items = Item.find_by_supplier_id(id_)
+def list_supplier_items(id):
+    items = Item.find_by_supplier_id(id)
     if items:
         for item in items:
             print(item)
@@ -110,9 +109,9 @@ def update_item():
         print(f"Could not find item number: {id_}")
 
 def delete_item():
-    id_ = input("Enter item you wish to delete: ")
-    if item := Item.find_by_id(id_):
+    name = input("Enter item you wish to delete: ")
+    if item := Item.find_by_name(name):
         item.delete()
         print(f"DELETED: {item}")
     else:
-        print(f"Item number {id_} not found.")
+        print(f"Item number {name} not found.")
