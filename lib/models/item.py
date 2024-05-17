@@ -11,7 +11,7 @@ class Item:
         self._supplier_id = supplier_id
 
     def __repr__(self):
-        return (f"[Item: {self.name}, Serial Number: {self.serial_number}]")
+        return (f"{self.id}: {self.name}, Serial Number: {self.serial_number}")
     
     @property
     def name(self):
@@ -125,4 +125,12 @@ class Item:
             SELECT * FROM items
         """
         rows = CURSOR.execute(sql).fetchall()
+        return [cls.instance_from_db(row) for row in rows]
+    
+    @classmethod
+    def find_by_supplier_id(cls, supplier_id):
+        sql = """
+            SELECT * FROM items WHERE supplier_id = ?
+        """
+        rows = CURSOR.execute(sql, (supplier_id,)).fetchall()
         return [cls.instance_from_db(row) for row in rows]

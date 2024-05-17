@@ -10,7 +10,9 @@ from helpers import (
     list_all_items,
     delete_item,
     update_item,
-    page_2
+    page_2,
+    page_3,
+    list_supplier_items
 )
 
 
@@ -25,13 +27,36 @@ def main():
             while True:
                 page_2()
                 choice = input("> ")
-                if choice == "add":
+                if choice == "back":
+                    menu()
+                    break
+                elif choice == "add":
                     create_supplier()
-                list_all_suppliers()
-
-                if choice == "delete":
+                elif choice == "delete":
                     delete_supplier()
+                elif choice == "update":
+                    update_supplier()
+                elif choice == "search":
+                    list_supplier_items()
+                    while True:
+                        page_3()
+                        choice = input("> ")
+                        if choice == "add":
+                            create_item()
+                        elif choice == "delete":
+                            delete_item()
+                        elif choice == "update":
+                            update_item()
+                        elif choice == "back":
+                            page_2()
+                            break
+                        else:
+                            print("Invalid choice!")
+                        list_all_items()
+                else: 
+                    print("Invalid choice!")
                 list_all_suppliers()
+                    
 
         elif choice == "3":
             create_supplier()

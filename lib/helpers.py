@@ -8,10 +8,25 @@ def exit_program():
     exit()
 
 def page_2():
-    print("Enter suppliers number to see that suppliers current items")
-    print("Enter 'add' if you wish to add a new supplier")
-    print("Enter 'delete' if you wish to delete a supplier")
-    print("Enter 'back' if you wish to main menu again")
+    print("------------------------------------------------")
+    print("------------------------------------------------")
+    print("Enter search to see specific supplier items")
+    print("Enter add if you wish to add a new supplier")
+    print("Enter update if you wish to delete a supplier")
+    print("Enter delete if you wish to update a supplier")
+    print("Enter back if you wish to main menu again")
+    print("------------------------------------------------")
+    print("------------------------------------------------")
+
+def page_3():
+    print("------------------------------------------------")
+    print("------------------------------------------------")
+    print("Enter add to create new item")
+    print("Enter update to update an item")
+    print("Enter delete to delete an item")
+    print("Enter back to see previous page")
+    print("------------------------------------------------")
+    print("------------------------------------------------")
 
 #Supplier helper functions
 
@@ -30,7 +45,7 @@ def create_supplier():
         print("Error cannont create new supplier", exc)
 
 def update_supplier():
-    id_ = input("Enter supplier id you wish to update: ")
+    id_ = input("Enter supplier number you wish to update: ")
     if supplier := Supplier.find_by_id(id_):
         try: 
             name = input("Enter udpated name: ")
@@ -43,12 +58,21 @@ def update_supplier():
             print("Could not update supplier", exc)
 
 def delete_supplier():
-    id_ = input("Enter suppliers id: ")
+    id_ = input("Enter suppliers number: ")
     if supplier := Supplier.find_by_id(id_):
         supplier.delete()
         print(f"DELETED: {supplier}")
     else:
         print(f"Could not delete supplier {id_}")
+
+def list_supplier_items():
+    id_ = input("Enter suppliers number: ")
+    items = Item.find_by_supplier_id(id_)
+    if items:
+        for item in items:
+            print(item)
+    else:
+        print("Couldn't find supplier")
 
 #Items helper function
 
@@ -60,7 +84,7 @@ def list_all_items():
 def create_item():
     name = input("Enter item name: ")
     serial_number = int(input("Enter item serial number: "))
-    supplier_id = input("Enter supplier id for item: ")
+    supplier_id = input("Enter supplier number for item: ")
     try: 
         item = Item.create(name, serial_number, supplier_id)
         print(f"CREATED: {item}")
@@ -68,14 +92,14 @@ def create_item():
         print("Failed to create item", exc)
 
 def update_item():
-    id_ = input("Enter item id you wish to update: ")
+    id_ = input("Enter item number you wish to update: ")
     if item := Item.find_by_id(id_):
         try:
             name = input("Enter updated item name: ")
             item.name = name
             serial_number = int(input("Enter updated item serial number: "))
             item.serial_number = serial_number
-            supplier_id = int(input("Enter updated item supplier id: "))
+            supplier_id = int(input("Enter updated item supplier number: "))
             item.supplier_id = supplier_id
 
             item.update()
@@ -83,7 +107,7 @@ def update_item():
         except Exception as exc:
             print("Could not update item", exc)
     else:
-        print(f"Could not find item id: {id_}")
+        print(f"Could not find item number: {id_}")
 
 def delete_item():
     id_ = input("Enter item you wish to delete: ")
@@ -91,4 +115,4 @@ def delete_item():
         item.delete()
         print(f"DELETED: {item}")
     else:
-        print(f"Item id {id_} not found.")
+        print(f"Item number {id_} not found.")
