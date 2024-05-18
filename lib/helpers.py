@@ -15,7 +15,8 @@ def page_2():
     print("2. Enter add if you wish to add a new supplier")
     print("3. Enter update if you wish to delete a supplier")
     print("4. Enter delete if you wish to update a supplier")
-    print("5. Enter back if you wish to main menu again")
+    print("5. Enter items to see all items")
+    print("6. Enter back if you wish to main menu again")
     print("------------------------------------------------")
     print(Fore.RED + "------------------------------------------------" + Fore.RESET)
 

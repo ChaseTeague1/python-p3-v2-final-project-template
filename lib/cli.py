@@ -36,6 +36,8 @@ def main():
                     delete_supplier()
                 elif choice == "update":
                     update_supplier()
+                elif choice == "items":
+                    list_all_items()
                 elif choice == "search":
                     id = input("Enter suppliers number: ")
                     list_supplier_items(id)
