@@ -58,23 +58,6 @@ def main():
                 list_all_suppliers()
                     
 
-        elif choice == "3":
-            create_supplier()
-        elif choice == "4":
-            update_supplier()
-        elif choice == "5":
-            delete_supplier()
-        elif choice == "6":
-            list_all_items()
-        elif choice == "7":
-            create_item()
-        elif choice == "9":
-            update_item()
-        elif choice == "10":
-            delete_item()
-        else:
-            print("Invalid choice")
-
 
 
 def menu():
