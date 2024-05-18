@@ -83,7 +83,7 @@ def menu():
     print(Fore.BLUE + pyfiglet.figlet_format("WELCOME", font="big") + Fore.RESET)
     print(Fore.WHITE + pyfiglet.figlet_format("                    TO", font="big"))
     print(Fore.CYAN + pyfiglet.figlet_format("       INVENTORY \n           MANAGER", font="small") + Fore.RESET)
-    print("              Please Press 1 To See Your Suppliers")
+    print(Fore.GREEN + "              Please Press 1 To See Your Suppliers" + Fore.RESET)
     print("")
 
 

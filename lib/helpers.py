@@ -1,6 +1,7 @@
 # lib/helpers.py
 from models.supplier import Supplier
 from models.item import Item
+from colorama import Fore
 
 
 def exit_program():
@@ -8,7 +9,7 @@ def exit_program():
     exit()
 
 def page_2():
-    print("------------------------------------------------")
+    print(Fore.MAGENTA + "------------------------------------------------" + Fore.RESET)
     print("------------------------------------------------")
     print("1. Enter search to see specific supplier items")
     print("2. Enter add if you wish to add a new supplier")
@@ -16,17 +17,17 @@ def page_2():
     print("4. Enter delete if you wish to update a supplier")
     print("5. Enter back if you wish to main menu again")
     print("------------------------------------------------")
-    print("------------------------------------------------")
+    print(Fore.RED + "------------------------------------------------" + Fore.RESET)
 
 def page_3():
-    print("------------------------------------------------")
+    print(Fore.MAGENTA + "------------------------------------------------" + Fore.RESET)
     print("------------------------------------------------")
     print("1. Enter add to create new item")
     print("2. Enter update to update an item")
     print("3. Enter delete to delete an item")
     print("4. Enter back to see previous page")
     print("------------------------------------------------")
-    print("------------------------------------------------")
+    print(Fore.RED + "------------------------------------------------" + Fore.RESET)
 
 #Supplier helper functions
 
@@ -109,7 +110,7 @@ def update_item():
         print(f"Could not find item number: {id_}")
 
 def delete_item():
-    name = input("Enter item you wish to delete: ")
+    name = input("Enter name of item you wish to delete: ")
     if item := Item.find_by_name(name):
         item.delete()
         print(f"DELETED: {item}")
