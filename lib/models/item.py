@@ -10,8 +10,6 @@ class Item:
         self.serial_number = serial_number
         self._supplier_id = supplier_id
 
-    def __repr__(self):
-        return (f"* {self.name}, Serial Number: {self.serial_number}")
     
     @property
     def name(self):

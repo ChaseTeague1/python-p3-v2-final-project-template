@@ -39,8 +39,7 @@ def main():
                 elif choice == "items":
                     list_all_items()
                 elif choice == "search":
-                    id = input("Enter suppliers number: ")
-                    list_supplier_items(id)
+                    list_supplier_items()
                     while True:
                         page_3()
                         choice = input("> ")

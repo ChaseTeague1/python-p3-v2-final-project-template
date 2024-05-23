@@ -32,10 +32,25 @@ def page_3():
 
 #Supplier helper functions
 
-def list_all_suppliers():
+
+
+    #output messages using enumerate
+    #for i, value in enumerate(values, start=1):
+        #print(i, value)
+    
+def supplier_print():
     suppliers = Supplier.get_all()
-    for supplier in suppliers:
-        print(supplier)
+    for i, supplier in enumerate(suppliers, start=1):
+        print(f"{i}: {supplier.name}, {supplier.location}")
+
+def item_print():
+    items = Item.get_all()
+    for i, item in enumerate(items, start=1):
+        print(f"{i}: {item.name}, Serial Number: {item.serial_number}")
+
+
+def list_all_suppliers():
+    supplier_print()
 
 def create_supplier():
     name = input("Enter new supplier name: ")
@@ -67,20 +82,21 @@ def delete_supplier():
     else:
         print(f"Could not delete supplier {id_}")
 
-def list_supplier_items(id):
-    items = Item.find_by_supplier_id(id)
-    if items:
-        for item in items:
-            print(item)
-    else:
-        print("Couldn't find supplier")
+def list_supplier_items():
+    suppliers = Supplier.get_all()
+    for i, supplier in enumerate(suppliers, start =1):
+        print(f"{i}: {supplier}")
+        items = Item.find_by_supplier_id(supplier.id)
+        if items:
+            for j, item in enumerate(items, start=1):
+                print(f" {i}: {j}: {item}")
+        else:
+            print("No items found for this supplier")
 
 #Items helper function
 
 def list_all_items():
-    items = Item.get_all()
-    for item in items:
-        print(item)
+    item_print()
 
 def create_item():
     name = input("Enter item name: ")
@@ -93,22 +109,22 @@ def create_item():
         print("Failed to create item", exc)
 
 def update_item():
-    id_ = input("Enter item number you wish to update: ")
-    if item := Item.find_by_id(id_):
+    index = int(input("Enter item number you wish to update: "))
+    items = Item.get_all()
+    if 1 <= index <= len(items):
+        item = items[index - 1]
         try:
             name = input("Enter updated item name: ")
             item.name = name
             serial_number = int(input("Enter updated item serial number: "))
             item.serial_number = serial_number
-            supplier_id = int(input("Enter updated item supplier number: "))
-            item.supplier_id = supplier_id
 
             item.update()
             print(f"UPDATED: {item}")
         except Exception as exc:
             print("Could not update item", exc)
     else:
-        print(f"Could not find item number: {id_}")
+        print(f"Could not find item number: {name}")
 
 def delete_item():
     name = input("Enter name of item you wish to delete: ")

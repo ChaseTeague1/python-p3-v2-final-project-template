@@ -8,8 +8,6 @@ class Supplier:
         self.name = name
         self.location = location
 
-    def __repr__(self):
-        return f"{self.id}: {self.name}, {self.location}"
     
     @property
     def name(self):
