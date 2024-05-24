@@ -10,24 +10,24 @@ def exit_program():
 
 def page_2():
     print(Fore.MAGENTA + "------------------------------------------------" + Fore.RESET)
-    print("------------------------------------------------")
+    print(" ")
     print("1. Enter search to see specific supplier items")
     print("2. Enter add if you wish to add a new supplier")
     print("3. Enter update if you wish to delete a supplier")
     print("4. Enter delete if you wish to update a supplier")
     print("5. Enter items to see all items")
     print("6. Enter back if you wish to main menu again")
-    print("------------------------------------------------")
+    print(" ")
     print(Fore.RED + "------------------------------------------------" + Fore.RESET)
 
 def page_3():
     print(Fore.MAGENTA + "------------------------------------------------" + Fore.RESET)
-    print("------------------------------------------------")
+    print(" ")
     print("1. Enter add to create new item")
     print("2. Enter update to update an item")
     print("3. Enter delete to delete an item")
     print("4. Enter back to see previous page")
-    print("------------------------------------------------")
+    print(" ")
     print(Fore.RED + "------------------------------------------------" + Fore.RESET)
 
 #Supplier helper functions
@@ -82,16 +82,19 @@ def delete_supplier():
     else:
         print(f"Could not delete supplier {id_}")
 
-def list_supplier_items():
+def list_supplier_items(selected_index):
     suppliers = Supplier.get_all()
-    for i, supplier in enumerate(suppliers, start =1):
-        print(f"{i}: {supplier}")
-        items = Item.find_by_supplier_id(supplier.id)
+    if 1 <= selected_index <= len(suppliers):
+        selected_supplier = suppliers[selected_index - 1]
+        items = Item.find_by_supplier_id(selected_supplier.id)
         if items:
-            for j, item in enumerate(items, start=1):
-                print(f" {i}: {j}: {item}")
+            print(f"Items for {selected_supplier.name}:")
+            for i, item in enumerate(items, start=1):
+                print(f"{i}: {item.name}, Serial Number: {item.serial_number}")
         else:
-            print("No items found for this supplier")
+            print(f"No items found for supplier {selected_supplier.name}.")
+    else:
+        print("Invalid supplier index.")
 
 #Items helper function
 
@@ -104,7 +107,7 @@ def create_item():
     supplier_id = input("Enter supplier number for item: ")
     try: 
         item = Item.create(name, serial_number, supplier_id)
-        print(f"CREATED: {item}")
+        print(f"CREATED: {item.name}")
     except Exception as exc:
         print("Failed to create item", exc)
 
@@ -120,16 +123,24 @@ def update_item():
             item.serial_number = serial_number
 
             item.update()
-            print(f"UPDATED: {item}")
+            print(f"UPDATED: {item.name}")
         except Exception as exc:
             print("Could not update item", exc)
     else:
         print(f"Could not find item number: {name}")
 
 def delete_item():
-    name = input("Enter name of item you wish to delete: ")
-    if item := Item.find_by_name(name):
-        item.delete()
-        print(f"DELETED: {item}")
-    else:
-        print(f"Item number {name} not found.")
+    items = Item.get_all()
+    try: 
+        index = int(input("Enter number of item you wish to delete: "))
+        if 1 <= index <= len(items):
+            selected_item = items[index - 1]
+            items = Item.find_by_id(selected_item.id)
+            if items:
+                selected_item.delete()
+            else:
+                print("Not able to delete item, Try again!")
+        else:
+            print("Invalid index!")
+    except Exception as exc:
+        raise ValueError("Could not find item!", exc)

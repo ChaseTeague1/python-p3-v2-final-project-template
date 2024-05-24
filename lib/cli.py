@@ -12,7 +12,8 @@ from helpers import (
     update_item,
     page_2,
     page_3,
-    list_supplier_items
+    list_supplier_items,
+    supplier_print
 )
 
 
@@ -39,7 +40,8 @@ def main():
                 elif choice == "items":
                     list_all_items()
                 elif choice == "search":
-                    list_supplier_items()
+                    selected_index = int(input("Enter supplier index: "))
+                    list_supplier_items(selected_index)
                     while True:
                         page_3()
                         choice = input("> ")
@@ -53,7 +55,7 @@ def main():
                             break
                         else:
                             print("Invalid choice!")
-                        list_supplier_items(id)
+                        list_supplier_items(selected_index)
                 else: 
                     print("Invalid choice!")
                 list_all_suppliers()
