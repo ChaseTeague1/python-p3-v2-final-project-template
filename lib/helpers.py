@@ -62,25 +62,36 @@ def create_supplier():
         print("Error cannont create new supplier", exc)
 
 def update_supplier():
-    id_ = input("Enter supplier number you wish to update: ")
-    if supplier := Supplier.find_by_id(id_):
-        try: 
+    index = int(input("Enter supplier number you wish to update: "))
+    suppliers = Supplier.get_all()
+    if 1 <= index <= len(suppliers):
+        selected_supplier = suppliers[index - 1]
+        try:
             name = input("Enter udpated name: ")
-            supplier.name = name
+            selected_supplier.name = name
             location = input("Enter updated location: ")
-            supplier.location = location
-            supplier.update()
-            print(f"UPDATED: {supplier}")
+            selected_supplier.location = location
+            selected_supplier.update()
+            print(f"UPDATED: {selected_supplier.name}")
         except Exception as exc:
             print("Could not update supplier", exc)
 
 def delete_supplier():
-    id_ = input("Enter suppliers number: ")
-    if supplier := Supplier.find_by_id(id_):
-        supplier.delete()
-        print(f"DELETED: {supplier}")
-    else:
-        print(f"Could not delete supplier {id_}")
+    suppliers = Supplier.get_all()
+    try:
+        index = int(input("Enter number of supplier you wish to delete: "))
+        if 1 <= index <= len(suppliers):
+            selected_supplier = suppliers[index - 1]
+            suppliers = Supplier.find_by_id(selected_supplier.id)
+            if suppliers:
+                selected_supplier.delete()
+            else:
+                print("unable to delete supplier, try again!")
+        else:
+            print("Invalid index!")
+    except Exception as exc:
+        raise ValueError("Supplier not found!", exc)
+
 
 def list_supplier_items(selected_index):
     suppliers = Supplier.get_all()
